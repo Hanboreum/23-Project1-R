@@ -1,4 +1,23 @@
+20230323
+library(ggplot2)
+library(cowsay)
+say("Hello wolrd", by="cat")
+say("Hello wolrd", by="snow")
+Sys.time()
+total <- 3030
+total
+print(total)
+cat("total: ", total)
+print("total: ")
+a <- 2
+b <- 30
+a+b
+print(a+b)
+ a <-50
+ c <- a+b
+ print(c)
 
+vector 
 
 # 한보름 h1 이름
 ## 2030316 h2  강의날짜
