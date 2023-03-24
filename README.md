@@ -2,9 +2,12 @@
 <h2>20230323</h2>
 <p>
 <h3>패키지의 개념 </h3>
-<h4> R 에선 데이터 분석을 위해 다양한 함수를 재공하는데 패키지는 이러한 함수를 기능별로 묶어놓은 일종의 꾸러미이다. <br>
+<p>
+<h4> R 에선 데이터 분석을 위해 다양한 함수를 재공하는데 패키지는 이러한 함수를 기능별로 묶어놓은 일종의 꾸러미이다. 
+</p>
+<p>
 패키지를 사용 방법 <br>
-1.패키지 설치 -> install.packages('ggploat2') <br>
+1. 패키지 설치 -> install.packages('ggploat2') <br>
 ggplot2 패키지 설치
 <br>
 2. 패키지 로드 -> library(ggplot2) <br> 
@@ -14,8 +17,8 @@ ggplot2 불러오기
 <br>
 ggplot(data = iris, aes(x =  Petal.Length, y= Petal.Width)) +geom.point()
 </h4>
-
 </p>
+
 20230323
 library(ggplot2)
 library(cowsay)
