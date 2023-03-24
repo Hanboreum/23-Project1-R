@@ -9,20 +9,30 @@
 <p>
 <p>
 패키지 사용 방법 <br>
+<br>
 1. 패키지 설치 -> install.packages('ggploat2') <br>
-ggplot2 패키지 설치
+install.packages('cowsay) <br>
+ggplot2,cowsay 패키지 설치
+
 </p>
 <p>
 2. 패키지 로드 -> library(ggplot2) <br> 
-ggplot2 불러오기
+ library(cowsay) <br>
+ggplot2, cowsay 불러오기
 </p>
 <p>
 3. 함수 사용하기
 <br>
 ggplot(data = iris, aes(x =  Petal.Length, y= Petal.Width)) +geom.point()
+<br>
+say('Hello world', by='cat')<br>
+say ('hi world), by='snowman<br> 
+</p>
+<p>
+
+</p>
 </p>
 </h4>
-</p>
 
 20230323
 library(ggplot2)
