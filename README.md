@@ -24,7 +24,7 @@ ggplot2, cowsay 불러오기
 3. 함수 사용하기
 <br>
 ggplot(data = iris, aes(x =  Petal.Length, y= Petal.Width)) +geom.point()
-<br>
+<br><br>
 say('Hello world', by='cat')<br>
 say ('hi world), by='snowman<br> 
 </p>
