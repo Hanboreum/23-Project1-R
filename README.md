@@ -5,17 +5,22 @@
 <p>
 <h4> R 에선 데이터 분석을 위해 다양한 함수를 재공하는데 패키지는 이러한 함수를 기능별로 묶어놓은 일종의 꾸러미이다. 
 </p>
+
 <p>
-패키지를 사용 방법 <br>
+<p>
+패키지 사용 방법 <br>
 1. 패키지 설치 -> install.packages('ggploat2') <br>
 ggplot2 패키지 설치
-<br>
+</p>
+<p>
 2. 패키지 로드 -> library(ggplot2) <br> 
 ggplot2 불러오기
-<br>
+</p>
+<p>
 3. 함수 사용하기
 <br>
 ggplot(data = iris, aes(x =  Petal.Length, y= Petal.Width)) +geom.point()
+</p>
 </h4>
 </p>
 
