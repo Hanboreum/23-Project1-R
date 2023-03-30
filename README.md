@@ -1,9 +1,9 @@
 <h1> 한보름</h1> 
 <h2>20230323</h2>
 
-<h4>ls() # 함수 리스트 확인 list
-rm(foo) #함수 제거 remove
-rm(list = ls()) #모든 함수 제거
+<h4>ls() # 함수 리스트 확인 list <br>
+rm(foo) #함수 제거 remove <br>
+rm(list = ls()) #모든 함수 제거 <br>
 </h4>
 =======
 <h1> 한보름</h1> 
