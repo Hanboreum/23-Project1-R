@@ -1,5 +1,82 @@
 <h1> 602377123 한보름</h1> 
 <h2>20230406</h2><br>
+<h3>열과 행에 이름 붙이기</h3>
+<h4>
+<p>
+score <- matrix(c(90,87,76,98,88,94,500,27,96,74,75,58), nrow = 4) <br>
+#score 매트릭스 생성 <br>
+rownames(score) <- c('john','tom','mark','jane')<br>
+#행에 이름을 붙인다. <br>
+colnames(score) <-c('Eng','math','science') <br>
+#열에 이름을 붙인다. <br>
+View(score) <br>#표 확인 <br>
+
+score['john','math'] <br> #존의 수학 성적이 출력된다. <br>
+score['tom',c('math','science')]<br> #톰의 수학, 과학 성적이 출력된다. <br>
+score['jane','math'] 
+score['mark',] <br> #마크의 모든 과목 성적이 출력된다 <br>
+score[,'Eng'] <br> #모든 학생의 영어 성적이 출력된다 <br>
+colnames(score)[2] <br> #math출력, score 열의 이름 중 두 번째 값 출력 <br>
+rownames(score)[1] <br> #john 출력, score 행의 두 번째 값 출력
+</p>
+</h4>
+<br>
+<p>
+<h3>데이터프레임은 무엇인가요 165p  <br>
+데이터프레임은 (data frame)은 매트릭스와 마찬가지로 2차원 형태의 데이터를 저장하고 분석하는데 사용되는 도구이다. 외관상으론 차이가 없으나 매트릭스에 저장되는 모든 값들이 동일한 종류인 것과는 다르게 데이터 프레임에는 서로 다른 종류의 값이 함께 저장될 수 있다.
+</h3>
+<h4>  <p>
+city <-c('seoul','tokyo','washington') <br> #문자로 이루어진 벡터 <br>
+rank <-c(1,3,2) <br>#숫자로 이루어진 벡터 <br>
+city.info <-data.frame(city, rank) <br># 데이터프레임 생성 <br>
+<br>
+</p>
+
+<p>
+iris 데이터셋 167p <br>
+iris  <br> #iris 사용법 <br> 
+iris[,c(1:2)] <br>#1~2열에 있는 모든 데이터 <br>
+iris[,c(1,3,5)] <br> # 1,3,5 열에 있는 모든 데이터 <br>
+iris[,c('Sepal.Length','Species')] <br> #1,5 열의 모든 데이터 <br>
+iris[1:5,c(1,3)] <br>#1~5행의 데이터 중, 1,3 열의 데이터<br>
+iris[1:4,c(1,2)] <br> #1~4행의 데이터 중 1,2 열의 데이터 <br>
+</p>
+<br>
+<p>
+<h3>
+#매트릭스와 데이터프레임을 다루어볼까요 172p</h3>
+dim(iris)<br> #행과 열의 개수 보이기 <br>
+nrow(iris) <br>#행의 개수 보이기 <br>
+ncol(iris)<br> #열의 개스 보이기 <br>
+head(iris)<br>#데이터셋의 앞부분 일부 보기 <br>
+tail(iris) <br>#데이터셋의 뒷부분 일부 보기 <br>
+str(iris) <br>##데이터셋의 요약 정보 보기<br>
+iris[,5] <br>품종 데이터 보기 <br>
+levels(iris[,5]) <br> # 품종의 종류 보기 (중복 제거) <br>
+table(iris[,'Species']) <br># 품종의 정류별 행의 개수 세기 <br>
+</p>
+
+<p>
+<h3>매트릭스와 데이터프레임에 함수적용 177p</h3>
+colSums(iris[,-5]) <br> # 합계의 평균을 계산할 때 iris[,-5]와 같이 5열을 제외하는 이유는 5열은 품종이을 나타내는 범주형 자료이다. 그래서 팩터 형태로 저장되어 있는데, 범주형 자료는 합계나 평균 등의 산술연산이 적용될 수 없기 때문이다. <br>
+colMeans(iris[,-5]) <br>#열별 합계 <br>
+rowSums(iris[,-5])<br> #열별 평균 <br>
+rowMeans(iris[,-5]) <br>#행별 합계 <br>
+<br>
+행과 열의 방향 전환 177p <br>
+z <-matrix(1:20, nrow=4, ncol=5) <br>
+t(z)<br>#행과 열 방향 변환 <br>
+</p>
+<h3>
+조건에 맞는 행과 열의 값 추출 178</h3>
+IR.1 <-subset(iris, Species =='setosa') <br> #Subset 함수는 조건에 맞는 행들만 추출하는 기능을 제공한다. <br>
+#iris :데이터를 추출하는 대상이 iris 데이터이다. <br>
+#Species =='setosa' :데이터를 추출할 조건을 지정하는 부분으로, 춤종 열의 값이 satosa 인 것만 추출하라는 의미 <br>
+IR.2 <-subset(iris, Sepal.Length <5.0 & Sepal.Width <4.0) <br> #Seppla.Length의 값이 5.0 보다 작고, Sepal Width 값이 4.0보다 큰 행들을 추출. <br>
+</p>
+</h4>
+
+
 
 <h1> 602377123 한보름</h1> 
 <h2>20230330</h2><br>
