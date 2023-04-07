@@ -73,6 +73,26 @@ IR.1 <-subset(iris, Species =='setosa') <br> #Subset 함수는 조건에 맞는 
 #iris :데이터를 추출하는 대상이 iris 데이터이다. <br>
 #Species =='setosa' :데이터를 추출할 조건을 지정하는 부분으로, 춤종 열의 값이 satosa 인 것만 추출하라는 의미 <br>
 IR.2 <-subset(iris, Sepal.Length <5.0 & Sepal.Width <4.0) <br> #Seppla.Length의 값이 5.0 보다 작고, Sepal Width 값이 4.0보다 큰 행들을 추출. <br>
+<p>
+
+<h3> 매트릭스와 데이터프레임에 산술연산 적용하기 180p</h3><br>
+a <-matrix(1:20,4,5) <br>
+b <-matrix(21:40,4,5)<br>
+2*a<br>#매트릭스 a에 저장돈 값들에 2를 곱하기. 매트릭스에 대한 산술연산은 매트릭스 안에 저장된 값들에 대한 연산으로 실행된다.  <br>
+a+b <br> #동일위치에 있는 값들 간에 더하는 연산으로 바꾸어 실행됨 <br>
+a <-a*3 <br> 2*a는 저장된 값들에 대해 2를 곱한 결과를 보여줄 뿐이지 저장되지 않는다. 값들이 변경되길 바란다면 적용 결과를 다시 a에 저장해야 한다.<br>
+b<-b-5<br>
+
+</p>
+<p>
+<h3>메트릭스와 데이터프레임의 자료구조 확인과 변환 182p </h3>
+class(iris) <br> #데이터셋 자료구조 확인<br>
+class(state.x77) <br>#state.x77 데이터셋의 자료구조 확인 <br>
+is.matrix(iris) <br> #데이터셋이 매트릭스인지 확인하는 함수 <br>
+is.matrix(state.x77)<br> #데이터셋이 매트릭스 인지 확인하는 함수 <br>
+</p>
+
+
 </p>
 </h4>
 
