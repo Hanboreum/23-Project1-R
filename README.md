@@ -91,6 +91,64 @@ class(state.x77) <br>#state.x77 데이터셋의 자료구조 확인 <br>
 is.matrix(iris) <br> #데이터셋이 매트릭스인지 확인하는 함수 <br>
 is.matrix(state.x77)<br> #데이터셋이 매트릭스 인지 확인하는 함수 <br>
 </p>
+<p>
+<p>
+<h3>chap6 데이터의 입력과 출력은 어떻게 하는 것일까 200p</h3>
+age <- c(63,4,74,23,12,43,6,8,3) <br>
+young <-min (age) <br> #정보추출 <br>
+old <-max(age) <br>
+cat (' 가장 젊은 사람의 나이는 ', young,'이고','가장 나이든 사람의 나이는',
+     old,'이다') <br> #처리 결과 입력 <br>
+</p>
+<p>
+화면에서 데이터 입력받기 <br>
+install.packages('svDialogs') <br># 패키지 설치 <br>
+library(svDialogs)
+user.input <-dlgInput('Input income')$res <br># 유저 입력 받는 함수 digInput(), $res 는 dlgInput()함수의 실행 결과에서 사용자가 입력한 값을 추출하는 역할이다. <br>
+income <- as.numeric(user.input) <br>#문자열을 숫자로 계산 <br>
+tax <-income * 0.05 <br> #세금 계산 <br>
+cat ('세금: ',tax)
+</p>
+<p>
+print(), cat() 함수ㅠ204p <br>
+print() : 하나의 값을 출력할 때, 데이터 프레임과 같은 2차원자료 구조를 출력할 때, 출력 후 자동으로 줄 바꿈 <br>
+cat() : 여러 개의 값을 연결해서 출력할 때( 백터는 출력되나 2차원 자료구조는 출력되지 않음), 출력 후 줄바꿈을 하려면 '\n' 필요 <br>
+#206p
+y<-'입니다'
+z <-c(12,14,15,3)
+print(x) <br>#하나의 값 출력 <br>
+print(y)<br> # 하나의 값 출력 <br>
+print(z) <br> # 벡터 출력 <br>
+print(iris[1:5,]) <br> #데이터프레임 출력 <br>
+print(x,y) <br> #에러<br>
+cat(x,y) <br> #출력가능<br>
+cat(x,'\n\n\n') <br>#하나의 값 출력 <br>
+car(iris[1:5],'\n\n\n') <br> #에러, 타입 list인 인자 1은 cat에 의해 다루어 질 수 없다<br>
+</p>
+<p>
+<h3>파일을 이용해 데이터를 읽고 쓰는 방법을 알아보자 209p</h3><br>
+getwd()<br> # 현재 작업 폴더 알아내기 <br>
+setwd('D:/Han/23-Project1-R') <br>#작업 폴더 변경 <br>
+<br>
+#2 .csv 파일 읽기와 쓰기 (자주씀 중요 csv. 패키지 사용 방법)<br>
+setwd('D:/Han/23-Project1-R')<br>
+getwd()<br>
+<p>
+.csv파일에서 데이터 읽기 <br>
+air <-read.csv('airquality.csv',header = T) <br>#.csv파일을 읽기. 파일을 해당 작업 폴더에 옮겨놔야한다<br>
+class (air)<br>#air 의 자료구조 확인 <br>
+head(air) <br>#파일의 내용을 정상적으로 불러왔는지 확인 <br>
+my.iris <- subset(iris, Species == 'setosa')<br> setosa 품종 데이터만 추출 <br>
+write.csv(my.iris, ' my_iris.csv',row.names=F) <br># .csv파일에 저장하기 <br>
+</p>
+<p>
+엑셀 파일 읽기와 쓰기 <br>
+install.packages('xlsx')<br> #패키지 설치 <br>
+library(xlsx)<br> # 패키지 불러오기 <br>
+air <-read.xlsx('D:/Han/23-Project1-R', header=T,sheetIndex=1) <br># .xlsx파일 읽기 <br>
+.xlsx패키지를 설치한 다음 패키지를 불러오는데 이는 엑셀 파일을 읽기 위해 필요하다. 그리고 read.xlsx()함수를 통해서 airqulity.xlsx파일을 읽는다 
+</p>
+</p>
 
 
 </p>
