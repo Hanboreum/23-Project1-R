@@ -1,4 +1,162 @@
 <h1> 602377123 한보름</h1> 
+<h2>20230406</h2><br>
+<h3>열과 행에 이름 붙이기</h3>
+<h4>
+<p>
+score <- matrix(c(90,87,76,98,88,94,500,27,96,74,75,58), nrow = 4) <br>
+#score 매트릭스 생성 <br>
+rownames(score) <- c('john','tom','mark','jane')<br>
+#행에 이름을 붙인다. <br>
+colnames(score) <-c('Eng','math','science') <br>
+#열에 이름을 붙인다. <br>
+View(score) <br>#표 확인 <br>
+
+score['john','math'] <br> #존의 수학 성적이 출력된다. <br>
+score['tom',c('math','science')]<br> #톰의 수학, 과학 성적이 출력된다. <br>
+score['jane','math'] 
+score['mark',] <br> #마크의 모든 과목 성적이 출력된다 <br>
+score[,'Eng'] <br> #모든 학생의 영어 성적이 출력된다 <br>
+colnames(score)[2] <br> #math출력, score 열의 이름 중 두 번째 값 출력 <br>
+rownames(score)[1] <br> #john 출력, score 행의 두 번째 값 출력
+</p>
+</h4>
+<br>
+<p>
+<h3>데이터프레임은 무엇인가요 165p  <br>
+데이터프레임은 (data frame)은 매트릭스와 마찬가지로 2차원 형태의 데이터를 저장하고 분석하는데 사용되는 도구이다. 외관상으론 차이가 없으나 매트릭스에 저장되는 모든 값들이 동일한 종류인 것과는 다르게 데이터 프레임에는 서로 다른 종류의 값이 함께 저장될 수 있다.
+</h3>
+<h4>  <p>
+city <-c('seoul','tokyo','washington') <br> #문자로 이루어진 벡터 <br>
+rank <-c(1,3,2) <br>#숫자로 이루어진 벡터 <br>
+city.info <-data.frame(city, rank) <br># 데이터프레임 생성 <br>
+<br>
+</p>
+
+<p>
+iris 데이터셋 167p <br>
+iris  <br> #iris 사용법 <br> 
+iris[,c(1:2)] <br>#1~2열에 있는 모든 데이터 <br>
+iris[,c(1,3,5)] <br> # 1,3,5 열에 있는 모든 데이터 <br>
+iris[,c('Sepal.Length','Species')] <br> #1,5 열의 모든 데이터 <br>
+iris[1:5,c(1,3)] <br>#1~5행의 데이터 중, 1,3 열의 데이터<br>
+iris[1:4,c(1,2)] <br> #1~4행의 데이터 중 1,2 열의 데이터 <br>
+</p>
+<br>
+<p>
+<h3>
+#매트릭스와 데이터프레임을 다루어볼까요 172p</h3>
+dim(iris)<br> #행과 열의 개수 보이기 <br>
+nrow(iris) <br>#행의 개수 보이기 <br>
+ncol(iris)<br> #열의 개스 보이기 <br>
+head(iris)<br>#데이터셋의 앞부분 일부 보기 <br>
+tail(iris) <br>#데이터셋의 뒷부분 일부 보기 <br>
+str(iris) <br>##데이터셋의 요약 정보 보기<br>
+iris[,5] <br>품종 데이터 보기 <br>
+levels(iris[,5]) <br> # 품종의 종류 보기 (중복 제거) <br>
+table(iris[,'Species']) <br># 품종의 정류별 행의 개수 세기 <br>
+</p>
+
+<p>
+<h3>매트릭스와 데이터프레임에 함수적용 177p</h3>
+colSums(iris[,-5]) <br> # 합계의 평균을 계산할 때 iris[,-5]와 같이 5열을 제외하는 이유는 5열은 품종이을 나타내는 범주형 자료이다. 그래서 팩터 형태로 저장되어 있는데, 범주형 자료는 합계나 평균 등의 산술연산이 적용될 수 없기 때문이다. <br>
+colMeans(iris[,-5]) <br>#열별 합계 <br>
+rowSums(iris[,-5])<br> #열별 평균 <br>
+rowMeans(iris[,-5]) <br>#행별 합계 <br>
+<br>
+행과 열의 방향 전환 177p <br>
+z <-matrix(1:20, nrow=4, ncol=5) <br>
+t(z)<br>#행과 열 방향 변환 <br>
+</p>
+<h3>
+조건에 맞는 행과 열의 값 추출 178</h3>
+IR.1 <-subset(iris, Species =='setosa') <br> #Subset 함수는 조건에 맞는 행들만 추출하는 기능을 제공한다. <br>
+#iris :데이터를 추출하는 대상이 iris 데이터이다. <br>
+#Species =='setosa' :데이터를 추출할 조건을 지정하는 부분으로, 춤종 열의 값이 satosa 인 것만 추출하라는 의미 <br>
+IR.2 <-subset(iris, Sepal.Length <5.0 & Sepal.Width <4.0) <br> #Seppla.Length의 값이 5.0 보다 작고, Sepal Width 값이 4.0보다 큰 행들을 추출. <br>
+<p>
+
+<h3> 매트릭스와 데이터프레임에 산술연산 적용하기 180p</h3><br>
+a <-matrix(1:20,4,5) <br>
+b <-matrix(21:40,4,5)<br>
+2*a<br>#매트릭스 a에 저장돈 값들에 2를 곱하기. 매트릭스에 대한 산술연산은 매트릭스 안에 저장된 값들에 대한 연산으로 실행된다.  <br>
+a+b <br> #동일위치에 있는 값들 간에 더하는 연산으로 바꾸어 실행됨 <br>
+a <-a*3 <br> 2*a는 저장된 값들에 대해 2를 곱한 결과를 보여줄 뿐이지 저장되지 않는다. 값들이 변경되길 바란다면 적용 결과를 다시 a에 저장해야 한다.<br>
+b<-b-5<br>
+
+</p>
+<p>
+<h3>메트릭스와 데이터프레임의 자료구조 확인과 변환 182p </h3>
+class(iris) <br> #데이터셋 자료구조 확인<br>
+class(state.x77) <br>#state.x77 데이터셋의 자료구조 확인 <br>
+is.matrix(iris) <br> #데이터셋이 매트릭스인지 확인하는 함수 <br>
+is.matrix(state.x77)<br> #데이터셋이 매트릭스 인지 확인하는 함수 <br>
+</p>
+<p>
+<p>
+<h3>chap6 데이터의 입력과 출력은 어떻게 하는 것일까 200p</h3>
+age <- c(63,4,74,23,12,43,6,8,3) <br>
+young <-min (age) <br> #정보추출 <br>
+old <-max(age) <br>
+cat (' 가장 젊은 사람의 나이는 ', young,'이고','가장 나이든 사람의 나이는',
+     old,'이다') <br> #처리 결과 입력 <br>
+</p>
+<p>
+화면에서 데이터 입력받기 <br>
+install.packages('svDialogs') <br># 패키지 설치 <br>
+library(svDialogs)
+user.input <-dlgInput('Input income')$res <br># 유저 입력 받는 함수 digInput(), $res 는 dlgInput()함수의 실행 결과에서 사용자가 입력한 값을 추출하는 역할이다. <br>
+income <- as.numeric(user.input) <br>#문자열을 숫자로 계산 <br>
+tax <-income * 0.05 <br> #세금 계산 <br>
+cat ('세금: ',tax)
+</p>
+<p>
+print(), cat() 함수ㅠ204p <br>
+print() : 하나의 값을 출력할 때, 데이터 프레임과 같은 2차원자료 구조를 출력할 때, 출력 후 자동으로 줄 바꿈 <br>
+cat() : 여러 개의 값을 연결해서 출력할 때( 백터는 출력되나 2차원 자료구조는 출력되지 않음), 출력 후 줄바꿈을 하려면 '\n' 필요 <br>
+#206p
+y<-'입니다'
+z <-c(12,14,15,3)
+print(x) <br>#하나의 값 출력 <br>
+print(y)<br> # 하나의 값 출력 <br>
+print(z) <br> # 벡터 출력 <br>
+print(iris[1:5,]) <br> #데이터프레임 출력 <br>
+print(x,y) <br> #에러<br>
+cat(x,y) <br> #출력가능<br>
+cat(x,'\n\n\n') <br>#하나의 값 출력 <br>
+car(iris[1:5],'\n\n\n') <br> #에러, 타입 list인 인자 1은 cat에 의해 다루어 질 수 없다<br>
+</p>
+<p>
+<h3>파일을 이용해 데이터를 읽고 쓰는 방법을 알아보자 209p</h3><br>
+getwd()<br> # 현재 작업 폴더 알아내기 <br>
+setwd('D:/Han/23-Project1-R') <br>#작업 폴더 변경 <br>
+<br>
+#2 .csv 파일 읽기와 쓰기 (자주씀 중요 csv. 패키지 사용 방법)<br>
+setwd('D:/Han/23-Project1-R')<br>
+getwd()<br>
+<p>
+.csv파일에서 데이터 읽기 <br>
+air <-read.csv('airquality.csv',header = T) <br>#.csv파일을 읽기. 파일을 해당 작업 폴더에 옮겨놔야한다<br>
+class (air)<br>#air 의 자료구조 확인 <br>
+head(air) <br>#파일의 내용을 정상적으로 불러왔는지 확인 <br>
+my.iris <- subset(iris, Species == 'setosa')<br> setosa 품종 데이터만 추출 <br>
+write.csv(my.iris, ' my_iris.csv',row.names=F) <br># .csv파일에 저장하기 <br>
+</p>
+<p>
+엑셀 파일 읽기와 쓰기 <br>
+install.packages('xlsx')<br> #패키지 설치 <br>
+library(xlsx)<br> # 패키지 불러오기 <br>
+air <-read.xlsx('D:/Han/23-Project1-R', header=T,sheetIndex=1) <br># .xlsx파일 읽기 <br>
+.xlsx패키지를 설치한 다음 패키지를 불러오는데 이는 엑셀 파일을 읽기 위해 필요하다. 그리고 read.xlsx()함수를 통해서 airqulity.xlsx파일을 읽는다 
+</p>
+</p>
+
+
+</p>
+</h4>
+
+
+
+<h1> 602377123 한보름</h1> 
 <h2>20230330</h2><br>
 <h4>- 본격 강의 전 잠깐 </h4>
 <h4>ls() # 함수 리스트 확인 list <br>
