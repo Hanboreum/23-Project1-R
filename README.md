@@ -1,5 +1,183 @@
 <h1> 602377123 한보름</h1> 
-<h2>20230406</h2><br>'
+<h2>20230413</h2><br>
+<h3>파일 입출력에서 알아야할 내용을 확인하자 219p</h3> <br>
+계산 결과를 화면에 출력하는 대신, 특정 파일로 출력하도록 하면 파일에 출력 결과가 저장되어있다.
+<h4>
+<p>
+setwd('c:/Rwork') <br> #작업 폴더 지정 <br>
+getwd()<br>#파일 위치 확인 <br>
+print('hello') <br>#화면으로 출력 <br>
+a <- 10; b<-20 <br>
+sink('result.txt',append=T)<br> #파일로 출력 <br>
+cat('hello world') <br># 화면으로 출력 <br>
+----이부분이 처리 결과를 파일을 출력하는 코드 <br>
+sink('result.txt',append=T) <br> # 파일로 출력 시작 <br>
+cat('a*b',a*b,'\n')
+sink() <br>#파일로 출력 정지 <br>
+-----여기까지<br>
+sink('result.txt',append=F)<br> #메모장 지워짐 <br>
+sink('result.txt',append=T) <br> #메모장 안지워짐 <br>
+sink()  #이거 없이도 들어간다
+</p>
+<p>
+- 탭이나 고백으로 분리된 파일 221p <br>
+R 에서 분석할 데이터는 대부분 .csv 나 엑셀 파일이지만 열이 공백이나 탭으로 분리된 파일도 종종 접하게 된다. 이러한 경우 read.table() 함수를 통해 데이터를 읽을 수 있다. <br>
+setwd('c:/Rwork') <br> # 작업 폴더 지정 <br>
+air <- read.table('airquality.txt',header = T,sep='') <br># 파일 읽기 <br>
+head(air) <br> #내용 확인<br>
+View(air)<br>
+tail(air)<br>
+</p>
+</h4>
+
+<p>
+<h3>Chap7. 제어문과 사용자 정의 함수 사용하기 234p </h3>
+<h4> 
+if-else문 <br>
+조건문을 조건에 따라 실행할 명령문을 다르게 할 경우에 사용된다. <br>
+<br>
+if(job.type =='b'){ <br>
+  bonus<-200 #직군이 b가 아닐때 실행 <br>
+}else{ <br>
+  bonus<-100 #직군이 b가 아닌 나머지 경우 실행<br>
+}<br>
+print(bonus)<br>
+직군이 B이면 보너스를 200으로 하고, 나머지의 경우엔 100 지급. <br>
+<br>239p ifelse 문 <br>
+<br>ifelse (비교조건, 조건이 참일 떄 선택할 값, 조건이 거짓일 때 선택할 값) <br>
+a <-10<br>
+b<-20 <br>
+c <- ifelse (a>b,a,b) <br> # a>b 조건을 만족하면 a에 c를 저장하고 만족하지 않으면 b를 c를 저장하라는 의미.  <br>
+print(c)<br> 
+</h4>
+</p>
+
+</h4>
+<p>
+<br> #243 반복문 <br>
+
+<br> for (반복 변수 in 반복 범위){<br> 
+  반복할 명령문들 <br> 
+}<br> <br> 
+for (i in 1:5){<br>  #
+  print('*')<br> 
+}<br> # 1,2,3,4,5반복. 반복할때마다 i에 저장 <br> 
+<br> 
+<br> #반복 범위에 따라서 반복 변수의 값이 어떻게 변하는지를 나타낸다. 반복 변수들이 하나하나 출력된다 <br> 
+for (i in 7:11){ <br> 
+  print('i')<br> 
+}<br> 
+<br> 
+<br> 구구단을 출력하기 위에선 cat함수를 사용한다. print는 하나의 함수를 출력할 때 사용되고,cat함수는 한 줄에 여러개의 값이 결합하여 출력할 때 사용된다. <br> 
+for(i in 1:9){  #2단<br> 
+  cat('2*', i,'=',2*i,'\n')<br>  
+}<br> 
+<br> 
+#짝수인지 확인 246p<br> 
+for(i in 1:20){<br> 
+  if(i %%2==0){<br> # i를 2로 나눴을 때 나머지가 0인지 확인 <br> 
+    cat(i,' ')<br> 
+  }<br> 
+}<br> 
+</p>
+</h4>
+<h4>
+<p>
+#248p while <br>
+<br> while (비교 조건){ <br>
+  반복할 명령문 <br>
+}<br>
+<br>여기서 비교 조건은 반목을 수행할지 중지할지를 결정하는 조건문이고, 코드블럭 안에 반복할 명령문이 위치한다. <br>
+<br>
+sum <-0 <br>
+i<-1<br>
+<br>
+while (i <=100){<br>
+  sum <-sum +i  # sum에 1을 누적<br> 
+  i<-i+1 #i 값을 1 증가 시킴. 이게 없으면 i 값에 변화가 일어나지 않고 while문이 영원히 실행됨. <br>
+}<br>
+print(sum)<br> # 5050 출력 
+</p>
+
+<p>
+#250p apply <br>
+반복작업의 대상이 매트릭스나 데이터프레임의 행이나 열인 경우 for ,while대신 apply 함수를 이용할 수 있다. 속도를 향상시킬 수 있다. <br>
+apply() 함수는 매트릭스나 데이터프레임에 있는 행들이나 열을 하나하나 차례로 꺼내어 평균이나 합계를 구하는 작업을 수행할 때 유용하다 <br>
+apply( 데이터셋, 행 /열 방향 지정, 적용 함수)<br>
+<br>
+apply(iris[,1:4],1,mean) <br>행 방향으로 함수 적용, 실행 결과는 150개의 행에 대한 행별 평균값 <br>
+apply(iris[,1:4],2,mean)<br> 열 방향으로 함수 적용, 실행 결과는 4개의 열에 대한 평균 출력 <br>
+apply(USJudgeRatings, 1,mean) <br> # 행별 평균 <br>
+apply(USJudgeRatings, 2,mean)<br> # 열 별 평균 <br>
+<p>
+#사용자 정의 함수 255p<br>
+사용자 스스로 함수를 만드는 것이다. <br>
+함수명 <- function (매개변수목록)<br>{
+  실행할 명령문 <br>
+  return (함수의 실행 결과 )<br>
+}<br><br>
+
+mymax <-function(x,y){ # 만들고자하는 함수 mymax, 이 함수가 입력받는 매개변수 x,y <br>
+  num.max <-x <br> 
+  if(x>y){ # 큰 값을 num.max 안에 저장. <br>
+} <br>
+return  (num.max) <br> # 더 큰 값을 반환해준다. 
+} <br> 작성된 코드는 작성 코드 자체를 한 번 실행해줘야한다. <br>
+<br>
+mymax(10,15) <br> #15출력 <br>
+a <-mymax(21,15) <br> #a에 21 저장 <br>
+a<br># 21 <br>
+b <-mymax(33,22)<br> #33 저장
+print(a+b)<br> #54출력 <br>
+</p>
+
+<p>
+#257 매개변수의 기본값 설정 <br>
+사용자 함수에서도 매개변수에 기본값을 저장할 수 있다. <br>
+mydiv <-function(x,y=2){ <br>
+  result <-x/y<br>
+  return(result)<br>
+}<br><br>
+
+mydiv(x=10,y=3)<br>#매개변수의 이름과 매개변수 값을 쌍으로 저장 <br>
+mydiv(10,3)<br><br> #매개변수 값만 저장 <br>
+mydiv(10)<br><br> # x에 대한 값만 저장 <br>
+</p>
+<p>
+#사용자 정의 함수의 저장과 재실행 260p <br>
+setwd('c:/Rwork') <br> # 저장된 폴더 <br>
+source('mydiv.R')<br># 저장된 폴더 안에 있는 함수 실행 <br>
+a <- mydiv(20,4)<br> 함수사용, 함수 호출,<br>
+b<- mydiv(20,4) <br> 함수 호출<br>
+a+b <br>#12.5 출력 <br>
+mydiv(mydiv(20,2),5)<br>2 출력 <br>
+</p>
+
+<p>
+#조건에 맞는 데이터의 위치를 찾아보자 264p <br>
+
+score <-c(65,47,86,35,75,85,78,45) <br>
+which(score==85)<br> #성적이 85인 학생은 몇 번째에 있나 <br>
+max(score) <br> # 가장 높은 점수 <br>
+which(50<=score)<br> #50보다 크거나 같은 점수는 몇번째에 있나 <br>
+which.min(score)<br> # 최저점은 몇번째에 있나 <br>
+idx <-which(score <=60) <br>60 점 이하인 값들의 인덱스 <br>
+score[idx] <-61<br> #60점 이하인 점수들은 61점으로 상향 조절 <br>
+score<br> # 상향 조절된 점수 확인 <br>
+<br>
+idx <- which(score >=80) <br>#80점 이상인 값들의 인덱스 <br>
+score.high <-score[idx] <br>80점 이상인 값들만 추출해서 저장 <br>
+score.high<br> # 확인 <br>
+<br>
+#for에서 i값을 증가시킬 때, 무엇이다른지, 
+#삼항연산자 ifelse문. 
+#사용자지정함수 funciton 매개변수.
+#source (mydiv.R)
+</p>
+</p>
+</h4>
+<h1> 602377123 한보름</h1> 
+<h2>20230406</h2><br>
 <h3>열과 행에 이름 붙이기</h3>
 <h4>
 <p>
