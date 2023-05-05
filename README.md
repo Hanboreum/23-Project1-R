@@ -1,3 +1,123 @@
+20230427
+# 8장
+favorite <- c('winter','spring','summer','fall','winter')
+favorite
+table (favorite)
+ds <-table (favorite) # 도수분표도 저장
+ds
+barplot(ds, main = 'Favorite season') # 막대 그래프
+barplot(ds, main = 'Favorite season', col ='grey20') # 색상 적용
+colors() # 색상확인
+
+#막대별로 색상 지정
+barplot(ds, main = 'Favorite season' , col=c('grey2','grey39','grey','grey20'))
+
+#x,y 축에 설명 붙이기/xlab()
+barplot(ds, main = 'Favorite season' , col=c('grey2','grey39','grey','grey20'),xlab='계절', ylab='빈도수')
+# 색상 랜덤 지정/ raibow()
+barplot(ds, main = 'Favorite season' , col=rainbow(4))
+
+# 수평 그래프 /horiz
+barplot(ds, main = 'Favorite season' , col=c('grey2','grey39','grey','grey20'),xlab='계절', ylab='빈도수',horiz=TRUE)
+
+#x축의 그룹 이름 바꾸기 names()
+barplot(ds, main = 'Favorite season' , col='gray',names=c('가을','봄','여름','겨울'))
+
+#x축의 그룹 이름을 수직 방향으로 작성 /las() ,1정상,2 x축만 바꿈,축을 기준으로수직  ,3 x,y 축 모두 틀어짐,축 방향과 상관 없음
+barplot(ds, main = 'Favorite season' , col='gray',names=c('가을','봄','여름','겨울'), las =3)
+
+#중첩 막대 그래프
+age.A <-c(23,352,654,234,643)
+age.B <-c(456,747,876,345)
+age.C <-c(66,44,32,88)
+ds <- rbind (age.A, age.B, age.C) #abs를 rbind로 묶어줌
+colnames(ds) <- c('1907','1990','2010','2030','2050');
+ds
+barplot(ds, main ='인구측정') #그래프 작성
+
+barplot(ds, main ='인구측정', col = rainbow(3)) #연령대 별로 색상 rainbow()
+
+#beside() 중첩하지 않고 각각
+barplot(ds, main ='인구측정', beside=T)
+
+#색인, legend.text = T
+barplot(ds, main ='인구측정',col = rainbow(3),legend.text = T)
+
+#범례를 그래프 밖에 표시 par()
+par(mfrow=c(1,1), mar=c(5,5,5,7))
+#범례를 그래프 밖에 표시2
+barplot(ds, main ='인구측정',col = rainbow(3),legend.text = T,args.legend = list(x='topright',bty='o',inset=c(0.25,0)))
+
+#범례의 내용 바꾸기 legend.text=c(), 기존에 있던 legend.text=T 없앰
+barplot(ds, main ='인구추정',col = rainbow(3),args.legend = list(x='topright',bty='o',inset=c(0.25,0)),legend.text=c('0-14','15-64','65~'))
+
+
+#히스토그램을 작성해 봅시다
+head(cars)
+dist <- cars[,2]
+dist
+
+hist(dist,
+     main = 'Histogram for 제동거리 ',  #제목
+     xlab = '제동거리', #x축 레이블
+     ylab = '빈도수', #y 축 레이블
+     border='blue', #막대 테두리 색
+     col='green', #막대색
+     las=2, #x축 글씨 방향 0-3
+     breaks=2) # 막대 개수 조절
+
+#305p 히스토그램은 막대의 면적이 의미가 있다.
+
+result <- hist(dist, main='Histogram for 제동거리', breaks = 5)
+result
+
+
+# 다중 그래프
+par(mfrow=c(2,2), mar=c(3,3,4,2)) #화면 분할
+
+hist(iris$Sepal.Length, main='Sepal.Length',col='orange')
+
+barplot(table(mtcars$cy),main='mtcars', col=c('red','blue','gray'))
+
+pie (table(mtcars$cyl),main='mtcars',col=topo.colors(3),radius = 2) #topo팔레트 사용
+
+par(mfrow=c(1,1),mar=c(5,4,4,2)+.1) #분할 취소
+#그래프 줌 -- save as 클릭 후 확장자 설정or Export
+
+#종업원 팁 정보
+var(res, main='식사시간팁',
+    col=c('gray','gray23'),
+    legend.text =c('lunch','dinner')
+    )
+
+#par(mfrow=c(1,1) ) 해제
+#이번주 :barplot,par,hist
+
+
+#원그래프와 선그래프를 작성 pie( )
+pie(ds,main = '선호계절', radius=1)
+
+#plotrix() 3D함수
+install.packages('plotrix')
+library(plotrix)
+pie3D(ds,main = '선호계절', radius=1)
+#그래프간 간격explode
+pie3D(ds,main = '선호계절', radius=1,explode = 0.1)
+
+# 선그래프
+month =1:12 #데이터입력
+late = c(3,5,2,6,4,3,7,34,7,5,22,11,) #
+plot(month,
+     late,
+     main='지각 통계',
+     type='1',
+     lty=1,
+     lwd=1,
+     xlab='month',
+     ylab='late cnt'
+     )
+#332
+
 <h1> 602377123 한보름</h1> 
 <h2>20230413</h2><br>
 <h3>파일 입출력에서 알아야할 내용을 확인하자 219p</h3> <br>
