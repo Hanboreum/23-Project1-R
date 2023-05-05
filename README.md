@@ -1,122 +1,159 @@
-20230427
-# 8장
-favorite <- c('winter','spring','summer','fall','winter')
-favorite
-table (favorite)
-ds <-table (favorite) # 도수분표도 저장
-ds
-barplot(ds, main = 'Favorite season') # 막대 그래프
-barplot(ds, main = 'Favorite season', col ='grey20') # 색상 적용
-colors() # 색상확인
+<h1> 602377123 한보름</h1> 
+<h2>20230427</h2><br>
+<h2>8장. 기본 그래프 작성하기 282p</h2>
+<h3>막대그래프를 작성해봅시다 </h3>
+<h4>
+도수분표도 계산하기 283p <br>
+favorite <- c('winter','spring','summer','fall','winter') # 데이터 입력 <br> 
+ ds <-table (favorite) # 도수분표도 저장 <br>
+ -table()함수는 벡터에 저장된 범주형 데이터에 대한 데이터 값이 종류별로  몇 개인지 계산하는 함수이다 <br>
+ <br>
+ 막대그래프 작성하기 284p<br>
+ ds <-table(favorite) #도수 분포도 저장 <br>
+ ds barplot(ds, main = 'Favorite season') # 막대 그래프 작성<br>
 
-#막대별로 색상 지정
-barplot(ds, main = 'Favorite season' , col=c('grey2','grey39','grey','grey20'))
+  barplot(ds, main = 'Favorite season', col ='grey20') # col = 색상 적용 <br> 
+  colors() # 색상확인 <br>
+  <br>
+  #막대별로 색상 지정 286 ,col=c('','') <br>
+ barplot(ds, main = 'Favorite season' , col=c('grey2','grey39','grey','grey20'))   <br><br>
+#x,y 축에 설명 붙이기 288p <br>
+xlab() barplot(ds, main = 'Favorite season' ,<br>
+col=c('grey2','grey39','grey','grey20'), #막대의 색을 지정<br>
+xlab='계절', ylab='빈도수')  #축 설명<br> <br>
 
-#x,y 축에 설명 붙이기/xlab()
-barplot(ds, main = 'Favorite season' , col=c('grey2','grey39','grey','grey20'),xlab='계절', ylab='빈도수')
-# 색상 랜덤 지정/ raibow()
+색상 랜덤 지정288p/ raibow() <br>
 barplot(ds, main = 'Favorite season' , col=rainbow(4))
+<br>
+<br>
+<h4>수평 그래프 /horiz 288p<br>
+barplot(ds, main = 'Favorite season' , #<br> 
+col=c('grey2','grey39','grey','grey20'), # 색상 지정<br>
+xlab='계절', ylab='빈도수', # x,y축<br>
+horiz=TRUE) #  Horiz=TRUE 수평 방향 출력 <br>
+<br>
+#x축의 그룹 이름 바꾸기 289p <br>
+ names() 매개변수 names는 그룹의 이름을 다른 것으로 바꾸어 출력하고 싶을 때 사용 <br>
+ barplot(ds, main = 'Favorite season' , <br>
+ col='gray', #막대의 색을 지정 <br> 
+ names=c('가을','봄','여름','겨울'))  #그룹 이름을 바꾸어 출력<br>
+<br>
+#x축의 그룹 이름을 수직 방향으로 작성 /las() <br>
+,1정상,2 x축만 바꿈,축을 기준으로수직 ,3 x,y 축 모두 틀어짐,축 방향과 상관 없음<br>
+barplot(ds, main = 'Favorite season' , <br>
+ col='gray', # 색상 지정<br> 
+ names=c('가을','봄','여름','겨울'), #그룹<br>
+  las =3) # 그룹 이름을 수직 방향으로  <br>
+<br>
+#중첩 막대 그래프 291 <br>
+ age.A <-c(23,352,654,234,643) #데이터 입력 <br> 
+  age.B <-c(456,747,876,345) <br>
+  age.C <-c(66,44,32,88) <br>
+  ds <- rbind (age.A, age.B, age.C) #abs를 rbind로 묶어줌<br>
+  colnames(ds) <- c('1907','1990','2010','2030','2050') #<br> 
+  ds<br>
+  barplot(ds, main='인구 추정')<br> #그래프 작성 <br>
+  <br>
+#연령대 별로 색상 rainbow() <br>
+barplot(ds, main ='인구측정', <br> 
+col = rainbow(3)) #or<br> 
+col =c('green','blue','yellow')  <br><br>
 
-# 수평 그래프 /horiz
-barplot(ds, main = 'Favorite season' , col=c('grey2','grey39','grey','grey20'),xlab='계절', ylab='빈도수',horiz=TRUE)
+#연령대를 각각의 막대로 표현하기- #beside() 294p <br>
+ 중첩하지 않고 각각 표시하는 방법 FALSE or TRUE<br>
+ barplot(ds, main ='인구측정',<br>
+  beside=T) <br> <br>
 
-#x축의 그룹 이름 바꾸기 names()
-barplot(ds, main = 'Favorite season' , col='gray',names=c('가을','봄','여름','겨울'))
+#범례(legend) 295p<br>
+ legend.text = T barplot(ds, main ='인구측정',col = rainbow(3),<br>
+ legend.text = T) #범례 추가 <br>
+<br>
+#범례를 그래프 밖에 표시 296p <br>
+par()함수는 그래프를 표시할 창에 대해 설정하는 역할을 한다. 범례를 표시하려면 써줘야 한다.
+par(mfrow=c(1,1), mar=c(5,5,5,7)) #범례를 그래프 밖에 표시2<br>
 
-#x축의 그룹 이름을 수직 방향으로 작성 /las() ,1정상,2 x축만 바꿈,축을 기준으로수직  ,3 x,y 축 모두 틀어짐,축 방향과 상관 없음
-barplot(ds, main = 'Favorite season' , col='gray',names=c('가을','봄','여름','겨울'), las =3)
-
-#중첩 막대 그래프
-age.A <-c(23,352,654,234,643)
-age.B <-c(456,747,876,345)
-age.C <-c(66,44,32,88)
-ds <- rbind (age.A, age.B, age.C) #abs를 rbind로 묶어줌
-colnames(ds) <- c('1907','1990','2010','2030','2050');
-ds
-barplot(ds, main ='인구측정') #그래프 작성
-
-barplot(ds, main ='인구측정', col = rainbow(3)) #연령대 별로 색상 rainbow()
-
-#beside() 중첩하지 않고 각각
-barplot(ds, main ='인구측정', beside=T)
-
-#색인, legend.text = T
-barplot(ds, main ='인구측정',col = rainbow(3),legend.text = T)
-
-#범례를 그래프 밖에 표시 par()
-par(mfrow=c(1,1), mar=c(5,5,5,7))
-#범례를 그래프 밖에 표시2
-barplot(ds, main ='인구측정',col = rainbow(3),legend.text = T,args.legend = list(x='topright',bty='o',inset=c(0.25,0)))
-
-#범례의 내용 바꾸기 legend.text=c(), 기존에 있던 legend.text=T 없앰
-barplot(ds, main ='인구추정',col = rainbow(3),args.legend = list(x='topright',bty='o',inset=c(0.25,0)),legend.text=c('0-14','15-64','65~'))
-
-
-#히스토그램을 작성해 봅시다
-head(cars)
-dist <- cars[,2]
-dist
-
-hist(dist,
-     main = 'Histogram for 제동거리 ',  #제목
-     xlab = '제동거리', #x축 레이블
-     ylab = '빈도수', #y 축 레이블
-     border='blue', #막대 테두리 색
-     col='green', #막대색
-     las=2, #x축 글씨 방향 0-3
-     breaks=2) # 막대 개수 조절
-
+ barplot(ds, main ='인구측정',col = rainbow(3),legend.text = T,<br>
+ args.legend = list(x='topright',bty='o',inset=c(0.25,0))) #범례를 그래프 밖에 표시 <br>
+ barplot()함수에서 범례에 관한 사항을 지정하는 데 사용하는 매개변수는 args.legend이다. 이 함수는 여러 개의 사항을 list() 함수로 묶어서 지정할 수 있다.
+<br><br>
+#범례의 내용 바꾸기 298p<br>
+barplot()함수에서 범례의 내용을 정하는 매개변수는 legend.text이다. 이 값을 TRUE of FALSE로 설정하면 그래프를 그릴 대상 데이터 행 이름이 자동적으로 표시된다. 
+<br>
+legend.text=c(), 기존에 있던 legend.text=T 없앰 barplot(ds, main ='인구추정',col = rainbow(3),args.legend = list(x='topright',bty='o',inset=c(0.25,0)),legend.text=c('0-14','15-64','65~'))<br>
+par(mfrow=c(1,1), mar=c(5,5,5,7)) <br>
+barplot (ds,main='인구추정', <br>
+col=c('green','blue','yellow'),<br>
+beside=TRUE ,<br>
+legend.text= c('0-14','15-65','65-') <br> #직접 추가할 내용을 입력
+args.legend = list(x = 'topright',bty='n', inset =c(-0.24,0)) <br>
+par (mfrow=c(1,1),mar=c(5,4,4,3)+0.1)  #그래프창 설정 해제 <br>
+)
+<br><br>
+<h3>히스토그램을 작성해 봅시다 303p</h3>
+외관상 막대 그래프와 비슷한 그래프로, 그루빙 명시적으로 존재하지 않는 수치형 자료의 분포를 시각화 할 때 사용된다.
+<br>
+ head(cars) <br>
+dist <- cars[,2]   #자동차 재동 거리<br>
+dist<br>
+hist(dist, #데이터<br>
+ main = 'Histogram for 제동거리 ', #제목<br>
+  xlab = '제동거리', #x축 레이블 <br>
+  ylab = '빈도수', #y 축 레이블 <br>
+  border='blue', #막대 테두리 색 <br>
+  col='green', #막대색 <br>
+  las=2, #x축 글씨 방향 <br>
+  breaks=2) # 막대 개수 조절 <br>
+<br>
 #305p 히스토그램은 막대의 면적이 의미가 있다.
+<br> 히스토그램에서 구간별 빈도수를 도수분포표 형태로 알아볼 수 있는 방법이 있다. <br>
+result <- hist(dist, #data<br>
+main='Histogram for 제동거리', #제목 <br>
+breaks = 5)  #막대 개수 조절 <br>
+result <br>
+freq <-result$counts #구간별 빈도수 저장 <br>
+names(freq) <-result$breaks [-1] #구간별 빈도수 출력 <br>
+freq #구간별 빈도수 출력<br>
+<br>
+<h3>다중 그래프 310p</h3> <br>
+매개변수 mar는 같이 그래프가 출력되는 영역 밖의 여유 공간을 지정하는데, 분할된 화면에 각각 적용된다. <br>
+par(mfrow=c(2,2), mar=c(3,3,4,2)) #화면 분할<br>
 
-result <- hist(dist, main='Histogram for 제동거리', breaks = 5)
-result
+hist(iris$Sepal.Length, main='Sepal.Length',col='orange') #그래프1 <br>
 
+barplot(table(mtcars$cy),main='mtcars', col=c('red','blue','gray')) #그래프 2<br>
 
-# 다중 그래프
-par(mfrow=c(2,2), mar=c(3,3,4,2)) #화면 분할
+pie (table(mtcars$cyl),main='mtcars',col=topo.colors(3),radius = 2) #topo팔레트 사용 <br>
+ <br> 
+par(mfrow=c(1,1),mar=c(5,4,4,2)+.1) #분할 취소 <br>
+#그래프 줌 -- save as 클릭 후 확장자 설정or Export<br>
 
-hist(iris$Sepal.Length, main='Sepal.Length',col='orange')
+#종업원 팁 정보 var(res, main='식사시간팁', col=c('gray','gray23'), legend.text =c('lunch','dinner') ) <br>
 
-barplot(table(mtcars$cy),main='mtcars', col=c('red','blue','gray'))
-
-pie (table(mtcars$cyl),main='mtcars',col=topo.colors(3),radius = 2) #topo팔레트 사용
-
-par(mfrow=c(1,1),mar=c(5,4,4,2)+.1) #분할 취소
-#그래프 줌 -- save as 클릭 후 확장자 설정or Export
-
-#종업원 팁 정보
-var(res, main='식사시간팁',
-    col=c('gray','gray23'),
-    legend.text =c('lunch','dinner')
-    )
-
-#par(mfrow=c(1,1) ) 해제
-#이번주 :barplot,par,hist
-
-
-#원그래프와 선그래프를 작성 pie( )
-pie(ds,main = '선호계절', radius=1)
-
-#plotrix() 3D함수
-install.packages('plotrix')
-library(plotrix)
-pie3D(ds,main = '선호계절', radius=1)
-#그래프간 간격explode
-pie3D(ds,main = '선호계절', radius=1,explode = 0.1)
-
-# 선그래프
-month =1:12 #데이터입력
-late = c(3,5,2,6,4,3,7,34,7,5,22,11,) #
-plot(month,
-     late,
-     main='지각 통계',
-     type='1',
-     lty=1,
-     lwd=1,
-     xlab='month',
-     ylab='late cnt'
-     )
-#332
+#par(mfrow=c(1,1) ) 해제 #이번주 :barplot,par,hist
+<br>
+<h3> 원그래프와 선그래프를 작성 328 </h3>  <br>
+pie( ) pie(ds,main = '선호계절', radius=1) #원그래프 작성 <br>
+<br>
+#plotrix() 3D함수 330p <br>
+ install.packages('plotrix') <br>
+  library(plotrix) <br>
+  pie3D(ds,main = '선호계절', radius=1) #그래프간 간격explode <br>
+  pie3D(ds,main = '선호계절', radius=1,explode = 0.1) <br>
+<br>
+선그래프 331p
+month =1:12 #데이터입력 <br>
+late = c(3,5,2,6,4,3,7,34,7,5,22,11,)#데이터 입력<br>
+plot(month, #x데이터 <br> 
+late, #y데이터 <br>
+main='지각 통계', #제목<br>
+type='1', #그래프의 종류 선택 (알파벳) <br>
+ lty=1, #선의 종류(line type)선택 <br> 
+ lwd=1, # 선의 굵기 선택 <br>
+ xlab='month', #x축 레이블 <br>
+ ylab='late cnt' )  #y축 레이블 <br>
+ #332
+</h4>
+</h4>
 
 <h1> 602377123 한보름</h1> 
 <h2>20230413</h2><br>
