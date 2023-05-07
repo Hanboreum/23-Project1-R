@@ -37,6 +37,81 @@ boxplot(Petal.Length~Species, #데이터와 그룹 정보 <br>
         main='품종별 꽃잎의 길이', #그래프의 제목<br>
         col=c('gray23','gray','gray11')) #상자들의 색<br>
 
+
+<h3>#344 section3. 산점도란 무엇인가 <br> </h3>
+산점도 (scatter plot) 는 다중변수 데이터에서 두 변쉥 포함된 값들을 2차원 그래프상에 점으로 표현하여 분포를 관찰 할 수 있도록 하는 도구이다. <br><br>
+
+#두 변수 사이의 산점도 345p <br>
+#산점도를 그려보면 두 변수의 데이터 분포와 변수 사이의 관계 파악 가능<br>
+#산점도는 두 변수의 데이터 분포를 보는 것이므로 두 변수의 데이터 필요<br>
+wt <-mtcars$wt # 중량 데이터, x축에 해당하는 데이터 (벡터)를 뜻 한다.<br>
+mpg <-mtcars$mpg #연비 데이터 ,y축에 해당하는 데이터(벡터) 를 뜻한다.<br>
+plot(wt,mpg, #2개의 변수 <br>
+     main='중량 연비 그래프', #제목<br>
+     xlab='중량', #x축 레이블<br>
+     ylab='연비 (MPG)', #y축 레이블<br>
+     col='gray65', #point 의 color<br>
+     pch=19) #point의 종류(모양)<br>
+
+산점도는 두 변수의 데이터 분포를 살펴보는 것이기 때문에 두 개의 변수에 대한 데이터가 필요하다. wt,mpg에 각각 중량과 연비 데이터를 저장한 후 plot() 함수를 이용하여 산점도를 작성한다. <br>
+
+#347p 여러 변수들 간의 산점도 <br>
+vars<-c('mpg','disp','drat','wt') # 대상 변수 <br>
+target <- mtcars[ ,vars] # 대상 데이터 생성 <br>
+head(target) <br>
+plot(target,  # 대상 데이터 <br>
+     min='Multi plots')<br>
+ #mtcars 데이터셋에는 11개의 변수가 저장되어 있는데 이 중 4 개의 변수 데이터만 선택하여 target에 저장했습니다. <br>
+<br>
+#349p 그룹 정보가 있는 2개 변수의 산점도 349p<br>
+iris.2 <-iris[,3:4] #데이터의 준비<br>
+levels(iris$Species) #그룹 확인<br>
+group <-as.numeric(iris$Species) #점의 모양과 색<br>
+group<br>
+color <-c('gray','gray7','red') #점의 색<br>
+plot (iris.2, #plot() 함수를 이용해 산점도를 작성 <br>
+      main='Iris plot',<br>
+      pch=c(group), #품종별로 점의 모양을 다르게 지정하려면 pch를 숫자로 지정해야함<br>
+      col=color[group])<br>
+    
+<br>
+#기본그래프 1에 있는거 정확한 학습 필요<br>
+<br>
+<h2>#10장 데이터 탐색하기 362p </h2>
+#단일 변수 데이터를 분석해보자 367p <br>
+#데이터 준비<br>
+installed.packages('carData')<br>
+library(carData) <br>
+room.class <-TitanicSurvival  #선실 정보<br>
+room.class <br>
+<br>#도수 분포 계산
+tbl <-table (room.class)<br>
+tbl<br>
+sum(tbl) #전체  탑승객수<br>
+<br>#막대 그래프 생성 <br>
+barplot(tbl, main='선실병 탑승객', <br>
+xlab='선실등급',<br>
+ylab='탑승객수',<br>
+col=c ('blue','green','yellow.))<br>
+<br>#원그래프 작성 <br>
+tbl/sum(tbl) <br>
+par (mar=c(1,1,4,1)) <br>
+pie(tbl,main ='선신별 탑승객',<br>
+col=c('blue','green','yellow'))<br>
+par(mar=c(5.1,4.1,4.1,2.1)) <br>
+<br>
+<br> #단일변수 수치형 데이터 분석 269p<br>
+#데이터 준비 <br>
+grad <-state.x77[,'HS Grad'] #주별 고등학교 졸업률<br>
+grad<br>
+<br>#사분위수 <br>
+summary(grad) <br>
+var(grad) #분산<br>
+sd(grad) #표준편차<br>
+<br>#히스토그램 <br>
+<br>
+#타이타닉 중요
+
 </h4>
 <h1> 602377123 한보름</h1> 
 <h2>20230427</h2><br>
