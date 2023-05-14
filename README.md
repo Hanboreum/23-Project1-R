@@ -1,4 +1,164 @@
 <h1> 602377123 한보름</h1> 
+<h2>20230511</h2><br>
+<p>
+<h4>
+#중간고서 답안 <br>
+# rm(list=ls()) 데이터 전체 삭제 <br>
+installed.packages('wordcloud')<br>
+library(wordcloud)<br>
+foo <-rownames(USArrests)<br>
+bar <-USArrests<br>
+foobar <-data.frame(foo,bar)<br>
+wordcloud(words=foobar$foo)<br>
+</h4>
+</p>
+<br>
+<h4>
+<h3>10-3 다중 데이터 변수를 분석해보자 379p</h3>
+#다중변수 데이터는 변수들을 개별 분석보다 변수 간의 관계를 찾는 것이 더 중요 <br>
+# 1.두변수의 상관관계<br>
+<br>
+#1. 데이터 확인<br>
+head (pressure) #측정값들이 저장되어있는 는 것을 알 수 있다.<br>
+#2.산점도 작성<br>
+plot(pressure$ temperature, #x축 그래프<br>
+     pressure$pressure,#y축 그래프<br>
+     main='온도와 기압', # 그래프 제목<br>
+     xlab='온도 (화씨)',#x축 레이블<br>
+     ylab = '기압')# y 축 레이블<br>
+     
+<br>plot()함수를 이용해 산점도를 통해 온도와 기압 사이의 관계를 확인.     
+<br>
+#상관관계 381p<br>
+#x축  변수의 값이 증가하면y축의 변수의 값이 비례해서 증거하거나 반대로 x축 변수의 값이 증가하며 <br>
+#상관계수가 (-) 인 경우 x,y가 반비례 음의 상관관계에 있음 <br>
+#상관계수가 (+) 인 경우 x, y 가 비례 양의 상관관계에 있음 <br>
+<br>
+#381 cars 데이터셋을 이용한 산점도와 상관계수 계산 (plot 잘 알아두세요) <br>
+ 1.데이터 확인<br>
+head (cars)<br>
+2. 산점도의 작성 <br>
+plot(cars$speed, #x축 데이터<br>
+     cars$dist,   #y축 데이터<br>
+     main='자동차 속도와 제동거리', #그래프 제목<br>
+     xlab='속도', # x축 레이블<br>
+     ylab='제동거리') #y측 레이블<br>
+     <br>
+<br>
+#상관계수를 구하는 함수cor <br>
+cor (cars$speed, cars$dist) <br>
+<br><br>
+#다중변수 사이의 상관관계 383<br>
+볌수가 3개인 데이터는 변수를 2개씩 짝지어서 상관관계를 분석할 수 있다. <br>
+<br>
+<br>
+#데이터 확인<br>
+st <-data.frame(state.x77) #매트릭스(state.x77)를 데이터 프레임으로 변환<br>
+head(st)<br>
+<br>
+#다중 산점도 작성<br>
+plot(st)<br>
+<br>
+#다중 상관계수<br>
+cor(st)<br>
+<br>
+
+#기대수명과 살인 범죄율은 매우 강한 음의 상관관계<br>
+#인당 소득과 고등학교 졸업률은 어느 정도의 양의 상관관계<br>
+#상관관계를 구하는cor()함수에 2개가 아닌 3개 이상의 변수 데이터를 입력하면 다중 산점도와 비슷한 형태의 결과가 나타남<br>
+#살인 범죄율과 문맹률으ㅢ 상관관계는 상당히 높은 상관관계<br>
+#상관관계는 인과관계를 의미하지 않는다. 기대수명과 실인 범죄율의 상관계수가 <br>
+#높다고 해서 범죄가 원인이 되어 기대수명이 낮아진다고 단정할 수는 없다.<br>
+#인과관계는 보다 심층적인것 385p<br>
+
+<h2>chapter 11, 데이터 전처리 알아보기 </h2>
+#11-1 결측값에 대해 알아봅시다. 394p <br>
+<br>
+#데이터 전처리<br>
+확보한 데이터를 정제하고 가공해 분석에 적합한 형태로 만드는과정<br>
+현실에서는 잘 정리된 데이터셋을 바로 얻는 경우가 많지 않음<br>
+데이터 전처리는 전체 분석 과정에서 오랜 시간을 처지<br>
+<br>
+#결측값의 저리
+결측값은 데이터 수집, 저장과정에서 값을 얻지 못하는 경우 발생 (NA 로 표현) <br>
+결측값이 섞여있는 데이터셋은 분석할 때 문제를 일으킴 ex) 합 평균 계산 시 <br>
+#결측값은 데이터의 수집, 저장과정에서 값을 얻지 못하는 경우 발생. 결측값은 NA로 표현된다. <br>
+#결측값 처리 방법은 1.결측값을 제거, 제외한 후 분석<br> 2.결측값을 추정하여 적당한 값으로 치환한 후 분석<br>
+
+score <- c(90,70,NA,40,60)
+sum(score)
+<br>#실행결과는 NA 가 나온다 <br>
+<br>
+#벡터의 결측값 394p <br>
+z <-c(1,2,3,NA,5,NA,8) # 결측값이 포함된 벡터  <br>
+sum(z) #정산 계산 안됨 <br>
+is.na(z) #결측값NA 여부 확인<br>
+sum(is.na(z)) #결측값 개수 확인, TRUE는 1, FALSE 는 0으로 변환. 이 명령문은 is.na (z)에 포함된 TRUE 개수를 세는 역할을 한다. <br>
+sum(z, na.rm=TRUE) #결측값 제외하고 합계를 계산<br>
+<br>
+#NA를 다른 값으로 대처하는 방법과 NA를 제거하는 방법 396p<br>
+z1 <-c(1,2,3,NA,5,NA)<br>
+z2<-c(5,7,3,NA,NA)<br>
+z1[is.na(z1)] <-0 #NA를 0으로 치환<br>
+z1<br>
+is.na(z1)함수는 벡터 z1에서 NA값을 TRUE 로, NA 가 아닌 값을 FALSE로 변환시켜 결과를 반환합니다. 따라서 z1[is.na(z1)]는 z1에 있는 NA 값들을 의미힌다. 이 값들에 대해서만 값이 0으로 바뀐다. 결과 값을 보면 NA값들이 0으로 바뀐 것을 알 수 있다. 
+<br>
+z3 <-as.vector(na.omit(z2)) #NA를 제거하고 새로운 벡터 생성<br>
+z3<br>
+na.omit(z2) 함수는 벡커 z2값에서 NA 값들을 제거하는 함수인데, 결과의 자료구조가 벡타가 아니기 때문에 as.vector()함수를 이용하여 벡터로 만든다.  실행결과를 보면 NA 를 제외한 값들오 z3이 만들어졌음을 확인 할 수 있다. <br>
+
+<h3>#매트릭스와 데이터 프레임의 결측값 397p<h3>
+#NA를 포함한 test데이터 생성 <br>
+x <-iris <br>
+x[1,2] <-NA; x[1,3] <-NA <br>
+x[2,3]<-NA; x[3,4]<- NA<br>
+head(x)<br>
+#for문을 이용한 방법<br>
+i <-c(1,2,NA,4,NA,76,NA)<br>
+for (i in 1:ncol(x)) {<br>
+  this.na <-is.na(x[,1])<br>
+  cat(colnames(x)[i],'\t',sum(this.na), '\n')<br>
+}<br>
+<br>for문을 살펴보먄 is.na() 함수를 통해 각 열별로 NA의 개수를 파악한 뒤  cat() 함수를 통해 열이름과 NA의 개수를 출력한다. <br>
+#is.na함수를 통해 각 열별로  NA의 개수를파악한 뒤 cat ()함수를 통해 열이름과 NA의 개
+<br>
+#apply를 이용한 방법<br>
+col_na <-function(y){<br>
+  return (sum(is.na(y)))<br>
+}<br>
+na_count <-apply(x,2,FUN=col_na)<br>
+na_count<br>
+<br>appy를 이용한 방법은 먼저 열별로 NA의 값을 파악하는 col_na()함수를 정의하고 apply()함수에서 각 열 별로 col_na() 함수를 적용하여 결과를 얻습니다 <br>
+<br>
+#행 별로 결측값이 몇 개 인지 알아보기 398p <br>
+rowSums(is.na(x)) # 행별 NA 개수<br>
+sum(rowSums(is.na(x))>0) #NA가 포함된 행의 개수<br>
+sum(is.na(x)) #데이터셋 전체에서 NA 개수<br><br>
+
+#NA를 제외하고 새로운 데이터셋 만들기. 이 작업을 위해 complete.cases() 사용된다.<br>
+#어떤 데이터셋에서 NA를 포함하지 않은 완전한 (complete)행들을 찾아준다. <br>
+head(x)<br>
+x[!complete.cases(x),] #NA가 포함된 행들을 나타냄 <br>
+y <-x[complete.cases(x),] #NA가 포함된 행들을제거 <br>
+head(y) #새로운 데이터셋인 y의 내용 확인 <br>
+<br>
+#400p<br>
+col_na <-function(y){<br>
+  return (sum(is.na(y)))<br>
+}<br> 
+<br>
+#R에서 제고앟는 airquality 데이터셋에 대해 열별로 NA값이 존재하는지 apply()함수를 이용해 나타내지
+apply(airquality, 2, FUM=col_na)<br>
+<br>
+#SEctio02. 이것이 정렬입니다<br>
+#정렬(sort)은 주어진 기준에 따라 데이터를 크기순으로 재배열하는 과정<br>
+#벡터의 정렬<br>
+v1 <-c(1,2,5,3,6)<br>
+v1 <-sort(v1)<br>
+v1<br>
+
+</h4>
+<h1> 602377123 한보름</h1> 
 <h2>20230504</h2><br>
 <h3>#복수의 선그래프 작성하기 #334p</h3>
 month =1:12 <br>
