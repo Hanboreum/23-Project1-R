@@ -1,4 +1,150 @@
 <h1> 602377123 한보름</h1> 
+<h2>20230518</h2><br>
+<h4>
+<h3>Sectio02.이것이 정렬입니다 402p</h3>
+<br>
+#정렬(sort)은 주어진 기준에 따라 데이터를 크기순으로 재배열하는 과정<br>
+#숫자의 경우는 숫자의 크기에 따라 정렬이 가능<br>
+#문자열의 경우는 알파벳 순 또는 가나다순으로 정렬 가능<br>
+<br>
+#벡터의 정렬 <br>
+v1 <-c(1,2,5,3,6) <br>
+v1 <-sort(v1) #오름차순(기본값)<br>
+v1 <br>
+v2 <-sort(v1, decreasing =T) # 내림차순<br>
+v2<br><br>
+#내림차순으로 하려면 sort()매개변수 decreasing =T 로 설정하면 된다.<br><br>
+name <-c('가나다','라마','바사')<br>
+sort(name) #오름차순<br>
+sort(name, decreasing = T) #내림차순<br>
+<br>
+#403p <br>
+#sort함수는 값의 크기에 따라 값들을 정렬하는 함수이다.<br>
+#order()함수는 값의 크기에 따라 값들의 인덱스를 정렬하는 함수 <br>
+order(name)#오름차순<br>
+order(name, decreasing = T)#내림차순, 값들의 인덱스를 값의 크기에 따라 내림차순으로 정렬하는 것<br>
+<br>
+idx <-order(name)<br>
+name[idx] #오름차순 정렬<br>
+#이 명령문은 값의 크기에 따라 오름차순으로 인덱스를 정렬한 뒤, 정렬된 인덱스를 이용해 값을 정렬하는 과정<br>
+#값의 크기에 따라 오름차순으로 인덱스를 정렬한 뒤, 정렬된 인덱스를 이용하여 값을 정렬<br>
+<br>
+<br>
+#메트릭스와 데이터프레임의 정렬 404p  <br>
+#특정 열의 값들을 기준으로 행을 재배열하는 방법
+<br><br>
+#iris 데이터셋에서 꽃잎의 길이를 기준으로 행을 재정렬하는 예 <br>
+head(iris) #행들의 순서를 나타냄. 입력된 순서대로 번호가 붙는다<br>
+order(iris$Sepal.Length)  # 주어진 열의 값들에 대해 순서를 붙인다.,$ = 데이블에서 열을 선택 <br>
+iris[order(iris$Sepal.Length),]#오름차순으로 정렬 <br>
+iris[order(iris$Sepal.Length,decreasing =T),] #내림차순으로 정렬<br>
+iris.new <-iris[order(iris$Sepal.Length),] #정렬된 데이터를 저장<br>
+head(iris.new)
+iris[order(iris$Species, decreasing = T, iris$Petal.Length),] #정렬 기준이 2개<br>
+<br>
+#정렬결과를 유지하기 위해선 새로운 벡터(iris.new)에 저장해야됨<br> <br>
+<h3>#Section 03. 샘플링과 조합 409p </h3>
+ <br>
+#샘플링:주어진 값들에서 임의의 개수만큼 값을 추출하는 작업<br>
+#한 번 뽑은 값을 제외한 뒤 새로운 값을 추출하는 방식 -> 비복원 추출(데이터분석에서 주로 사용)<br>
+#뽑았던 값을 다시 포함시켜 새로운 값을 추출하는 방식 -> 복원 추출
+<br>
+#샘플링이 필요한 때 : 데이터셋이 너무 커, 분석에 시간이 많이 걸리는 경우, 일부 데이터만 추출하여 대략의 결과를 미리 확인 <br><br>
+
+x <- 1:100<br>
+y <-sample(x,size = 10,replace = FALSE) #비복원 추출<br>(replace = FALSE)<br>
+y<br>
+#sample()함수에서size는 추출할 값의 개수를 지정하는 매개변수이고, replace=FALSE는 비복원추출을 의미,<br>복원 추출을 원하면 replaces =TRUE 지정<br><br>
+
+#iris데이터셋에서 50개의 행을 임의로 추출하는 예 409<br>
+idx <-sample(1:nrow(iris),size=50,replace = F) #50개의 행 추출 , nrow는 함수는 행의 개수를 알아내는 함수.1:150 사이의 숫자중 50개를 임의로 추출하여 idx에 저장<br>
+iris.50 <-iris[idx,] #50개의 행 임의로 추출<br>
+dim(iris.50) # 행과 열의 개수 확인<br>
+head(iris.50) <br> <br>
+#410 <br> <br>
+#sample()함수는 임의 추출이기 때문에 함수를 실행할 때마다 결과가 다름.<br>
+#임의로 추출하되 다음에도 동일한 결과가 나오도록 해야할 째는 sample()실행전 , set.seed()함수를 먼저 실행. <br>
+#set.seed()함수의 매개변수 값이 같으면 sample()함수의 결과도 같다. <br>
+sample(1:20, size=5)<br>
+sample(1:20, size=5)<br>
+sample(1:20, size=5)# 매번 다른 결과값 <br>
+set.seed(100)<br>
+sample(1:20, size=5)<br>
+set.seed(100)<br>
+sample(1:20, size=5) <br>
+#set.seed(100)을 먼저 실행한 후 샘플링을 두 번 징행하면 결과가 같지만 set.seed()힘수 없이 샘플링을 하면 결과가 다르게 나온다<br>
+#알 수 있는 사실은 set.seed()함수의 효과는 샘플링을 한 번 하면 사라진다는 것이다. <br> <br>
+#조합 412<br>
+#조합(combination): 주어진 데이터값 중에서 몇 개씩 짝을 지어 추출하는 작업으로 combn()함수를 사용<br>
+#결과에서 얻은 각 열은 하나의 조합을 의미한다.<br>
+<br><br>
+combn(1:5,3) #1-5에서 3개를 뽑는 조합 <br>
+x <- c('red','green','blue','black','white') <br>
+com <-combn(x,2) #x의 우언소를 2개씩 뽑는 조합<br>
+com<br>
+<br>
+for (i in 1:ncol(com)){ #조합을 출력<br>
+  cat(com[,i],'\n')<br>
+}<br> <br>
+<h3>#Section4.데이터 집계 <br></h3>
+#집계: 데이터의 그룹에 대해서 합계나 평군을 계산하는 작업 aggregate()함수 사용<br>
+<br>
+#iris데이터셋에서 각 품종별로 꽃잎 꽃받침의 폭과 길이의 평균을 나타내자. <br>
+agg<- aggregate(iris[,-5], by=list(iris$Species), FUN=mean) <br>
+agg <br>
+#iris[,-5] : 집계 작업을 수행할 데이터셋을 의미한다. <br>
+#by=list(iris$Species) :집계 작업의 기준이 품종 열의 값임을 의미한다. <br>
+# FUN= mean :집계 작업의 내용이 평균 (mean)계산임을 의미한다<br>
+<br>
+#2개의 기준에 대해 다른 열들의 최댓값 구하기 417p<br>
+#mtcars데이터셋에서  cyl, vs 를 기준으로 다른 열들의 최댓값 구하기<br>
+head(mtcars)<br>
+agg <-aggregate(mtcars, by=list(cyl=mtcars$cyl), vs =mtcars$vs,FUN=max)<br>
+agg<br> <br>
+
+<h3>#Chapter12 고급 그래프 작성하기</h3>
+#SEction 1.나무지도 426p <br>
+#나무지도를 작성하기 위해선 treemap 패키지를 설치해야된다.<br>
+install.packages('treemap')<br>
+library(treemap) #treemap패키지 불러오기 <br>
+data(GNI2014) #데이터 불러오기<br>
+head(GNI2014) #데이터 내용 보기<br>
+<br>
+treemap(GNI2014,<br>
+        index=c('continent','iso3'), #계층 구조 설정 (대륙 -국가), 나무지도 상에서 타일들이 대륙안에 국가의 형태로 배치되는 것을 지정<br>
+        vSize='population', #타일의 크기. 타일의 크기를 결정하는 열을 지정<br>
+        vColor='GNI',#타일의 컬러, 타일의 색상을 지정<br>
+        type='value', #타일 컬러링 방법, 타일의 컬러링 방법을 지정<br>
+       # bg.labels='yellow', #레이블의 배경색<br>
+        title='World s GNI') #나무지도 제목<br>
+        <br>
+        
+st <-data.frame(state.x77) #매트릭스를 데이터프레임으로 변환<br>
+st <-data.frame(st, stname=rownames(st)) #주의 이름 열 stname 추가 <br>
+
+treemap(st,<br>
+        index=c('stname'), # 타일에 주 이름 표기<br>
+        vSize='Area', #타일의 크기 <br>
+        vColor='Income', #타일의 컬러<br>
+        type='value',#타일의 컬러링 방법 <br>
+        title='USA states area and income') #제목<br>
+        
+treemap(st,<br>
+        index=c('stname'),<br>
+        vSize='Population',<br>
+        vColor='Illiteracy',<br>
+        type='value',<br>
+        title='USA states 인구와 문맹률')<br>
+
+
+
+
+
+
+</h4>
+
+
+<h1> 602377123 한보름</h1> 
 <h2>20230511</h2><br>
 <p>
 <h4>
